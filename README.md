@@ -17,7 +17,7 @@ Then open http://localhost:5173.
 npm run build
 ```
 
-This writes a static site to `dist/`. Pushing to `main` deploys it to GitHub Pages through `.github/workflows/deploy.yml`. Any static host also works:
+This writes a static site to `dist/`. Pushing to `main` deploys it to GitHub Pages (Pages source: GitHub Actions) through `.github/workflows/deploy.yml`. Live at https://udaykiranbokka.github.io/uday-portfolio/. Any static host also works:
 
 - **Netlify:** drop the `dist/` folder on app.netlify.com/drop.
 - **Vercel:** run `npx vercel --prod`.
