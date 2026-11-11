@@ -1,9 +1,4 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: './',
-  build: {
-    // three.js is the bulk of the bundle (~185 KB gzipped total); that's expected
-    chunkSizeWarningLimit: 800,
-  },
-});
+// Relative asset paths, so the build works on GitHub Pages, Netlify, Vercel or any static host.
+export default defineConfig({ base: './' });

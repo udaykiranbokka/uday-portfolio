@@ -1,8 +1,6 @@
-# UPI — Uday's Product Interface
+# Uday Kiran Bokka · Portfolio
 
-This is the portfolio of **Uday Kiran Bokka**, Technical Product Manager at ICICI Bank. It plays like a game: you ride a ₹ coin along a neon payment rail from Hyderabad to Mumbai and unlock a career node at each stop.
-
-The concept and full design are in [PLAN.md](PLAN.md).
+The portfolio of **Uday Kiran Bokka**, Technical Product Manager at ICICI Bank. It is a static site with no backend. The home page has sections for work, how he works, experience, about and contact, and each product has its own case-study route (`#/work/<id>`).
 
 ## Run it
 
@@ -11,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173. Adding `?start` to the URL skips the pay screen.
+Then open http://localhost:5173.
 
 ## Build and deploy
 
@@ -19,48 +17,23 @@ Open http://localhost:5173. Adding `?start` to the URL skips the pay screen.
 npm run build
 ```
 
-This writes a static site to `dist/`. Any static host works:
+This writes a static site to `dist/`. Pushing to `main` deploys it to GitHub Pages through `.github/workflows/deploy.yml`. Any static host also works:
 
-- **Netlify:** drag the `dist/` folder onto app.netlify.com/drop.
-- **Vercel:** run `npx vercel --prod`, or import the repo; the framework is auto-detected as Vite.
-- **GitHub Pages:** push `dist/`. The build uses relative asset paths (`base: './'`).
+- **Netlify:** drop the `dist/` folder on app.netlify.com/drop.
+- **Vercel:** run `npx vercel --prod`.
 
 ## Edit content
 
-All text lives in **`src/data.js`**: profile, the 11 nodes, skill coins and obstacles. The game, receipt cards and Passbook résumé are all generated from it.
-
-- Leave `PROFILE.phone` as `null` to keep your number off the public site, or set it to show a call button.
-- Each node's `landmark` picks its 3D model from `src/world/landmarks.js`.
+All text lives in **`src/data.js`**: profile, stats, the five products and their flows, principles, experience, education, builds and skills. The photo is `public/uday.jpg`.
 
 ## Structure
 
 ```
-src/main.js              game state machine, camera, loop
-src/data.js              all content
-src/world/scene.js       renderer, sky, grid ground, stars, instanced city
-src/world/track.js       rail curve, deck shader, barriers, portal gates
-src/world/landmarks.js   11 procedural landmarks (no model files)
-src/world/player.js      ₹ coin + trail
-src/world/pickups.js     skill coins + PM obstacles
-src/ui/*                 HUD, receipt cards + mini-games, passbook, audio, input, icons
-test/*.html              dev-only harnesses (landmarks gallery, UI cards)
+index.html        shell: meta tags, fonts, nav
+src/data.js       all content
+src/main.js       hash router (home sections + product case studies) and motion
+src/style.css     design tokens (light + dark), layout and animations
+public/uday.jpg   portrait
 ```
 
-Dev-only test pages:
-
-- `/test/landmarks.html?key=charminar`
-- `/test/ui.html?node=4`
-
-## Controls
-
-| Action | Keys |
-|---|---|
-| Switch lane | ← / → (or A / D) |
-| Boost | Space / ↑ (hold) |
-| Continue | Enter |
-| Passbook | P |
-| Sound | S |
-| Help | H |
-| Fast-travel | Click a station on the route bar |
-
-On a phone, swipe left or right to switch lanes and hold ⚡ to boost.
+The motion includes line-by-line headline reveals, an iris reveal on the photo, a rotating orbit label, a marquee, count-up stats, scroll reveals, a timeline that draws as you scroll, a cursor-following product preview, animated product flow diagrams, magnetic buttons and a scroll progress bar. All of it switches off for visitors who set "reduce motion".
